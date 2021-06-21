@@ -1,0 +1,64 @@
+﻿<Page x:Class="WpfApp2.ShoppingCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2"
+      mc:Ignorable="d" 
+      d:DesignHeight="548" d:DesignWidth="885"
+      Title="ShoppingCard" Background="#FFCB2A2A">
+
+    <Grid Background="#FF0E0E38">
+        <Border CornerRadius="10" BorderThickness="1" HorizontalAlignment="Left" Height="438" Margin="10,10,0,0" VerticalAlignment="Top" Width="858" Background="#FF09092C">
+            <ListView x:Name="ListShoppingCard" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionChanged="ListShoppingCard_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="BlanchedAlmond" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="#FFC5F39D" />
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
+                        <GridViewColumn Header="Фото" Width="90">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Image Width="70" Source="{Binding image}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Наличие" Width="80" DisplayMemberBinding="{Binding nalichie}" />
+                        <GridViewColumn Header="Название" Width="170" DisplayMemberBinding="{Binding name}"/>
+                        <GridViewColumn Header="Описание" Width="170" DisplayMemberBinding="{Binding opisanie}"/>
+                        <GridViewColumn Header="Цена" Width="60" DisplayMemberBinding="{Binding costs}"/>
+                        <GridViewColumn Header="Наличие рецепта" Width="280" DisplayMemberBinding="{Binding nalichie_retsepta}">
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+        <Border x:Name="BordBuy" CornerRadius="7" BorderBrush="#FF09092C" BorderThickness="1" HorizontalAlignment="Left" Height="44" Margin="650,468,0,0" VerticalAlignment="Top" Width="205" Background="#FF09092C" MouseEnter="BordBuy_MouseEnter" MouseLeave="BordBuy_MouseLeave">
+            <Button x:Name="ButtonBuy" Content="Оформить заказ" HorizontalAlignment="Left" Width="205" Margin="-1" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontFamily="Yu Gothic UI Semibold" FontSize="20" Click="ButtonBuy_Click"/>
+        </Border>
+        <Border CornerRadius="7" BorderBrush="#FF09092C" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="27,468,0,0" VerticalAlignment="Top" Width="320" Background="#FF09092C">
+            <StackPanel>
+                <Label x:Name="LabelCosts" Content="Итого к оплате:" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="319" FontFamily="Yu Gothic UI Semibold" FontSize="24" Background="{x:Null}" Foreground="White"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
